@@ -8,7 +8,7 @@ import React, {
 
 const ProductContext = createContext();
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'http://74.225.168.175:5000/api';
 
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
