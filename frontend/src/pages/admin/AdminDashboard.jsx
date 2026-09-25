@@ -81,7 +81,7 @@ const customerGrowth = calculateGrowth(
   const fetchCustomerCount = async () => {
     try {
       const response = await fetch(
-        'http://localhost:5000/api/admin/dashboard/stats',
+        'http://74.225.168.175:5000/api/admin/dashboard/stats',
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -136,7 +136,7 @@ setPreviousMonthCustomers(
     const fetchAdminOrders = async () => {
       try {
         const response = await fetch(
-          'http://localhost:5000/api/admin/orders',
+          'http://74.225.168.175:5000/api/admin/orders',
           {
             headers: {
               Authorization: `Bearer ${token}`,

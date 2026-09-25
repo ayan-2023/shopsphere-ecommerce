@@ -42,7 +42,7 @@ const Navbar = () => {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/api/wishlist', {
+      const response = await fetch('http://74.225.168.175:5000/api/wishlist', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
