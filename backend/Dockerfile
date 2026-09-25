@@ -14,6 +14,8 @@ FROM node:20-alpine
 WORKDIR /app
 
 ENV NODE_ENV=production
+RUN apk update && apk upgrade
+RUN rm -rf /usr/local/lib/node_modules/npm
 
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY package*.json ./
