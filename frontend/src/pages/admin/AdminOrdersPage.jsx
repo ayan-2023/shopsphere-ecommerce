@@ -3,7 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import { formatCurrency, formatDate } from '../../utils/formatters';
 import Badge from '../../components/common/Badge';
 
-const API_URL = 'http://74.225.168.175:5000/api';
+const API_URL = '/api';
 
 const AdminOrdersPage = () => {
   const { token } = useAuth();

@@ -3,7 +3,7 @@ import { useAuth } from './AuthContext';
 
 const OrderContext = createContext();
 
-const API_URL = 'http://74.225.168.175:5000/api';
+const API_URL = '/api';
 
 const formatOrder = (order) => {
   const items = (order.items || []).map((item) => ({

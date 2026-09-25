@@ -19,6 +19,9 @@ COPY --from=dependencies /app/node_modules ./node_modules
 COPY package*.json ./
 COPY src ./src
 
+# Run application as non-root user
+USER node
+
 EXPOSE 5000
 
 CMD ["node", "src/server.js"]

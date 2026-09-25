@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 
-const API_URL = 'http://74.225.168.175:5000/api';
+const API_URL = '/api';
 
 const WishlistPage = () => {
   const { token } = useAuth();
