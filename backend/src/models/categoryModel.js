@@ -1,0 +1,22 @@
+const { pool } = require('../config/db');
+
+const categoryModel = {
+  // Fetch all categories
+  async getAll() {
+    const [rows] = await pool.execute(
+      'SELECT id, name, description, image, created_at FROM categories ORDER BY name ASC'
+    );
+    return rows;
+  },
+
+  // Find category by ID
+  async findById(id) {
+    const [rows] = await pool.execute(
+      'SELECT id, name, description, image, created_at FROM categories WHERE id = ?',
+      [id]
+    );
+    return rows[0] || null;
+  },
+};
+
+module.exports = categoryModel;
