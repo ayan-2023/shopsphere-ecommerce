@@ -160,4 +160,17 @@ jobs:
             cd /home/devopsadmin/shopsphere-ecommerce
             docker compose pull backend frontend
             docker compose up -d --force-recreate backend frontend
-            curl -f http://localhost:3000/api/health    
+            echo "Waiting for ShopSphere to become healthy..."
+
+            for i in {1..12}; do
+              if curl -fsS http://localhost:3000/api/health; then
+                echo "ShopSphere is healthy."
+                exit 0
+              fi
+
+              echo "Health check failed. Retrying in 5 seconds..."
+              sleep 5
+            done
+
+            echo "ShopSphere health check failed after 60 seconds."
+            exit 1
