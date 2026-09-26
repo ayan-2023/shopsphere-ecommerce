@@ -40,9 +40,6 @@ backend/
 │   ├── app.js                    # Express application configuration & middleware
 │   └── server.js                 # HTTP server entry point & DB test connection
 │
-├── database/
-│   └── schema.sql                # MySQL database schema & seed data (20+ products, categories, users)
-│
 ├── .env.example                  # Environment variables template
 ├── .gitignore                    # Git ignore file
 ├── package.json                  # Node dependencies & npm scripts
@@ -61,19 +58,19 @@ CREATE DATABASE IF NOT EXISTS shopsphere DEFAULT CHARACTER SET utf8mb4 COLLATE u
 
 ---
 
-## 📥 Step 2: Import `database/schema.sql`
+## 📥 Step 2: Import `../database/schema.sql`
 
 You can import the schema and seed data into MySQL using any of the following methods:
 
 ### Option A: Using MySQL Command Line (Recommended)
 ```bash
-mysql -u root -p shopsphere < database/schema.sql
+mysql -u root -p shopsphere < ../database/schema.sql
 ```
 
 ### Option B: Using MySQL Workbench or phpMyAdmin
 1. Open **MySQL Workbench** or **phpMyAdmin**.
 2. Select the `shopsphere` database.
-3. Open `database/schema.sql` and execute the entire script.
+3. Open `../database/schema.sql` and execute the entire script.
 
 ---
 
@@ -210,7 +207,7 @@ curl http://localhost:5000/api/products/1
 
 ## 🔒 Pre-configured Test Accounts
 
-The seed script (`database/schema.sql`) automatically creates 2 test accounts (Password for both: `password123`):
+The seed script (`../database/schema.sql`) automatically creates 2 test accounts (Password for both: `password123`):
 
 1. **Admin Account**: `admin@shopsphere.com`
 2. **Standard User Account**: `john@example.com`
