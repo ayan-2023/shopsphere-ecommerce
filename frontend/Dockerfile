@@ -20,6 +20,8 @@ RUN npm run build
 # Stage 2: Serve application with Nginx
 FROM nginx:alpine
 
+RUN apk update && apk upgrade
+
 # Remove default Nginx files
 RUN rm -rf /usr/share/nginx/html/*
 
