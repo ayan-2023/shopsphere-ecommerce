@@ -1,5 +1,9 @@
 name: ShopSphere CI
 
+permissions:
+  contents: read
+  packages: write
+
 on:
   push:
     branches:
@@ -118,4 +122,30 @@ jobs:
           exit-code: '1'
           ignore-unfixed: true
           severity: CRITICAL,HIGH              
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Tag images for GHCR
+        run: |
+          IMAGE_OWNER=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
 
+          docker tag shopsphere-backend:ci ghcr.io/$IMAGE_OWNER/shopsphere-backend:${GITHUB_SHA}
+          docker tag shopsphere-backend:ci ghcr.io/$IMAGE_OWNER/shopsphere-backend:latest
+
+          docker tag shopsphere-frontend:ci ghcr.io/$IMAGE_OWNER/shopsphere-frontend:${GITHUB_SHA}
+          docker tag shopsphere-frontend:ci ghcr.io/$IMAGE_OWNER/shopsphere-frontend:latest
+
+      - name: Push backend image
+        run: |
+          IMAGE_OWNER=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
+          docker push ghcr.io/$IMAGE_OWNER/shopsphere-backend:${GITHUB_SHA}
+          docker push ghcr.io/$IMAGE_OWNER/shopsphere-backend:latest
+
+      - name: Push frontend image
+        run: |
+          IMAGE_OWNER=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
+          docker push ghcr.io/$IMAGE_OWNER/shopsphere-frontend:${GITHUB_SHA}
+          docker push ghcr.io/$IMAGE_OWNER/shopsphere-frontend:latest    
