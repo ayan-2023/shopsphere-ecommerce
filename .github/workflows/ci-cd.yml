@@ -149,3 +149,15 @@ jobs:
           IMAGE_OWNER=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
           docker push ghcr.io/$IMAGE_OWNER/shopsphere-frontend:${GITHUB_SHA}
           docker push ghcr.io/$IMAGE_OWNER/shopsphere-frontend:latest    
+
+      - name: Deploy to Azure VM
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          script: |
+            cd /home/devopsadmin/shopsphere-ecommerce
+            docker compose pull backend frontend
+            docker compose up -d --force-recreate backend frontend
+            curl -f http://localhost:3000/api/health    
