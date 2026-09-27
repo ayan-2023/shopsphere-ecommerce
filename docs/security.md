@@ -37,7 +37,7 @@ ShopSphere employs a multi-tiered security strategy separating **Application-Lev
 
 ## 2. Authentication 🔐
 
-Authentication is handled via dedicated endpoints in [backend/src/controllers/authController.js](file:///e:/DevOps%20Coding/shopsphere-ecommerce/backend/src/controllers/authController.js) and [backend/src/routes/authRoutes.js](file:///e:/DevOps%20Coding/shopsphere-ecommerce/backend/src/routes/authRoutes.js).
+Authentication is handled via dedicated endpoints in [backend/src/controllers/authController.js](../backend/src/controllers/authController.js) and [backend/src/routes/authRoutes.js](../backend/src/routes/authRoutes.js).
 
 ### Registration (`POST /api/auth/register`)
 - **Required Fields**: Validates that `name`, `email`, and `password` are present in the request body. If any are missing, returns an HTTP `400 Bad Request`.
@@ -128,7 +128,7 @@ Authorization: Bearer <JWT_TOKEN>
 ```
 
 ### Verification Middleware (`protect`):
-Located in [backend/src/middleware/authMiddleware.js](file:///e:/DevOps%20Coding/shopsphere-ecommerce/backend/src/middleware/authMiddleware.js):
+Located in [backend/src/middleware/authMiddleware.js](../backend/src/middleware/authMiddleware.js):
 1. Verifies the presence of the `Bearer` token prefix in `req.headers.authorization`.
 2. Validates token signature and expiration via `jwt.verify(token, process.env.JWT_SECRET)`.
 3. Verifies that the user still exists in MySQL (`userModel.findById(decoded.id)`).
@@ -182,7 +182,7 @@ const authLimiter = rateLimit({
 ```
 
 ### Rate-Limited Routes:
-The limiter is mounted directly on sensitive public authentication routes in [backend/src/routes/authRoutes.js](file:///e:/DevOps%20Coding/shopsphere-ecommerce/backend/src/routes/authRoutes.js):
+The limiter is mounted directly on sensitive public authentication routes in [backend/src/routes/authRoutes.js](../backend/src/routes/authRoutes.js):
 - `POST /api/auth/register`
 - `POST /api/auth/login`
 
@@ -205,7 +205,7 @@ ShopSphere enforces business logic boundaries at both controller and model layer
 - **Delivered Order Immutability**: Orders marked `delivered` are permanent. Any attempt to update their status throws an error (`'Delivered orders cannot be updated.'`), preventing tampering with completed shipments.
 
 ### 3. Review Submission Integrity
-- **Verified Purchase Requirement**: [backend/src/models/reviewModel.js](file:///e:/DevOps%20Coding/shopsphere-ecommerce/backend/src/models/reviewModel.js) checks that the reviewing user actually purchased the product AND that the order status is `'delivered'`:
+- **Verified Purchase Requirement**: [backend/src/models/reviewModel.js](../backend/src/models/reviewModel.js) checks that the reviewing user actually purchased the product AND that the order status is `'delivered'`:
   ```sql
   SELECT o.id, o.status, oi.product_id
   FROM orders o
@@ -225,7 +225,7 @@ ShopSphere enforces business logic boundaries at both controller and model layer
 ## 8. Database Security & Injection Mitigation 🗄️
 
 ### Parameterized Prepared Statements:
-All database interactions in [backend/src/models/](file:///e:/DevOps%20Coding/shopsphere-ecommerce/backend/src/models/) use parameterized SQL statements through the `mysql2/promise` library:
+All database interactions in [backend/src/models/](../backend/src/models/) use parameterized SQL statements through the `mysql2/promise` library:
 ```javascript
 // Parameterized query prevents SQL injection
 const [rows] = await pool.execute(
@@ -236,7 +236,7 @@ const [rows] = await pool.execute(
 No dynamic SQL queries are constructed using string concatenation with untrusted user input.
 
 ### Relational Schema Constraints:
-The database schema [database/schema.sql](file:///e:/DevOps%20Coding/shopsphere-ecommerce/database/schema.sql) enforces integrity:
+The database schema [database/schema.sql](../database/schema.sql) enforces integrity:
 - `users`: `UNIQUE KEY (email)`
 - `cart`: `UNIQUE KEY (user_id)`
 - `cart_items`: `UNIQUE KEY unique_cart_product (cart_id, product_id)`
@@ -253,7 +253,7 @@ The MySQL container (`shopsphere-mysql`) does not bind to any host network inter
 ## 9. Container Security & Hardening 🐳
 
 ### 1. Multi-Stage Docker Builds
-The backend Dockerfile ([backend/Dockerfile](file:///e:/DevOps%20Coding/shopsphere-ecommerce/backend/Dockerfile)) splits build and runtime stages:
+The backend Dockerfile ([backend/Dockerfile](../backend/Dockerfile)) splits build and runtime stages:
 - **Stage 1 (`dependencies`)**: Runs `npm ci --omit=dev` to isolate production dependencies.
 - **Stage 2 (`runtime`)**: Copies only the pre-built `node_modules` into a clean Alpine image.
 
@@ -287,7 +287,7 @@ Only the Nginx frontend container exposes an external port (`3000:80`). The back
   .env.*
   !.env.example
   ```
-- Public templates ([.env.example](file:///e:/DevOps%20Coding/shopsphere-ecommerce/.env.example)) contain only non-confidential placeholder names.
+- Public templates ([.env.example](../.env.example)) contain only non-confidential placeholder names.
 
 ### CI/CD Deployment Secrets:
 The GitHub Actions workflow retrieves deployment credentials directly from encrypted GitHub Repository Secrets:
@@ -300,7 +300,7 @@ The GitHub Actions workflow retrieves deployment credentials directly from encry
 
 ## 11. DevSecOps Scanning in CI/CD 🚀
 
-Every push and pull request to `main` undergoes automated security audits in [.github/workflows/ci-cd.yml](file:///e:/DevOps%20Coding/shopsphere-ecommerce/.github/workflows/ci-cd.yml):
+Every push and pull request to `main` undergoes automated security audits in [.github/workflows/ci-cd.yml](../.github/workflows/ci-cd.yml):
 
 ### 1. Secret Scanning (Gitleaks)
 - Scans full commit history (`fetch-depth: 0`) using `gitleaks/gitleaks-action@v3`.

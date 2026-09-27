@@ -76,7 +76,7 @@ mysql -u root -p shopsphere < ../database/schema.sql
 
 ## ⚙️ Step 3: Configure `.env` File
 
-Copy `.env.example` to `.env` in the root of the project:
+From the project root, copy the root `.env.example` to `.env`:
 
 ```bash
 cp .env.example .env

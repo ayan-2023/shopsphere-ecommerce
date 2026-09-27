@@ -118,7 +118,7 @@ During automated deployments, GitHub Actions also publishes commit-specific SHA 
 
 ## 6. Docker Compose Services
 
-The multi-container application stack is defined in [docker-compose.yml](file:///e:/DevOps%20Coding/shopsphere-ecommerce/docker-compose.yml):
+The multi-container application stack is defined in [docker-compose.yml](../docker-compose.yml):
 
 ### 1. MySQL Service (`shopsphere-mysql`)
 ```yaml

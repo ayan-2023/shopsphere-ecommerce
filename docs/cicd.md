@@ -2,7 +2,7 @@
 
 This document provides a comprehensive technical overview of the automated Continuous Integration, Continuous Delivery (CI/CD), and DevSecOps deployment pipeline implemented for **ShopSphere**.
 
-The entire automation lifecycle is configured through **GitHub Actions** in [.github/workflows/ci-cd.yml](file:///e:/DevOps%20Coding/shopsphere-ecommerce/.github/workflows/ci-cd.yml).
+The entire automation lifecycle is configured through **GitHub Actions** in [.github/workflows/ci-cd.yml](../.github/workflows/ci-cd.yml).
 
 ---
 
@@ -66,7 +66,7 @@ flowchart TD
 
 ## 3. GitHub Actions Jobs
 
-The workflow file [.github/workflows/ci-cd.yml](file:///e:/DevOps%20Coding/shopsphere-ecommerce/.github/workflows/ci-cd.yml) defines five primary jobs:
+The workflow file [.github/workflows/ci-cd.yml](../.github/workflows/ci-cd.yml) defines five primary jobs:
 
 ### Job 1: `backend-ci`
 - **Runner**: `ubuntu-latest`
@@ -216,7 +216,7 @@ docker tag shopsphere-frontend:ci ghcr.io/$IMAGE_OWNER/shopsphere-frontend:lates
 
 ## 7. GitHub Actions Permissions 🔐
 
-The workflow defines minimal, explicit repository permissions at the top of [.github/workflows/ci-cd.yml](file:///e:/DevOps%20Coding/shopsphere-ecommerce/.github/workflows/ci-cd.yml):
+The workflow defines minimal, explicit repository permissions at the top of [.github/workflows/ci-cd.yml](../.github/workflows/ci-cd.yml):
 
 ```yaml
 permissions:

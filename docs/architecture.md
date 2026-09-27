@@ -111,7 +111,7 @@ flowchart TD
 
 ## 4. Docker Architecture 🐳
 
-The container topology is declared in [docker-compose.yml](file:///e:/DevOps%20Coding/shopsphere-ecommerce/docker-compose.yml) and encompasses three coordinated services:
+The container topology is declared in [docker-compose.yml](../docker-compose.yml) and encompasses three coordinated services:
 
 | Container Service | Base Image | Internal Port | Host Port | Privilege / User | Public Access |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -151,7 +151,7 @@ The container topology is declared in [docker-compose.yml](file:///e:/DevOps%20C
 
 ## 5. Nginx Reverse Proxy 🔀
 
-The frontend container embeds a custom [nginx.conf](file:///e:/DevOps%20Coding/shopsphere-ecommerce/frontend/nginx.conf) that unifies presentation and API routing:
+The frontend container embeds a custom [nginx.conf](../frontend/nginx.conf) that unifies presentation and API routing:
 
 ```nginx
 server {
@@ -304,7 +304,7 @@ sequenceDiagram
 
 ## 9. CI/CD Architecture 🚀
 
-The automated deployment pipeline is defined in [.github/workflows/ci-cd.yml](file:///e:/DevOps%20Coding/shopsphere-ecommerce/.github/workflows/ci-cd.yml):
+The automated deployment pipeline is defined in [.github/workflows/ci-cd.yml](../.github/workflows/ci-cd.yml):
 
 ```mermaid
 flowchart TD
@@ -371,7 +371,7 @@ ShopSphere incorporates automated DevSecOps scanning and runtime security contro
 
 ## 12. Database Architecture 🗄️
 
-The relational database architecture is defined in [database/schema.sql](file:///e:/DevOps%20Coding/shopsphere-ecommerce/database/schema.sql):
+The relational database architecture is defined in [database/schema.sql](../database/schema.sql):
 
 ```mermaid
 erDiagram
@@ -462,7 +462,7 @@ Configuration is decoupled from application code and injected via environment va
         └── MYSQL_PORT            (Internal database port: 3306)
 ```
 
-No secrets or passwords are committed to source control; sample defaults are maintained in [.env.example](file:///e:/DevOps%20Coding/shopsphere-ecommerce/.env.example) for local development reference.
+No secrets or passwords are committed to source control; sample defaults are maintained in [.env.example](../.env.example) for local development reference.
 
 ---
 

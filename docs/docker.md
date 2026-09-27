@@ -58,7 +58,7 @@ flowchart TD
 
 ## 3. Docker Compose Services
 
-The multi-container stack is declared in [docker-compose.yml](file:///e:/DevOps%20Coding/shopsphere-ecommerce/docker-compose.yml):
+The multi-container stack is declared in [docker-compose.yml](../docker-compose.yml):
 
 ```yaml
 services:
@@ -166,7 +166,7 @@ volumes:
 
 ## 4. Frontend Dockerfile ⚛️
 
-The frontend container uses a multi-stage Docker build defined in [frontend/Dockerfile](file:///e:/DevOps%20Coding/shopsphere-ecommerce/frontend/Dockerfile):
+The frontend container uses a multi-stage Docker build defined in [frontend/Dockerfile](../frontend/Dockerfile):
 
 ```dockerfile
 # Stage 1: Build React application
@@ -232,7 +232,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 ## 5. Backend Dockerfile 🟢
 
-The backend container uses a hardened, multi-stage Docker build in [backend/Dockerfile](file:///e:/DevOps%20Coding/shopsphere-ecommerce/backend/Dockerfile):
+The backend container uses a hardened, multi-stage Docker build in [backend/Dockerfile](../backend/Dockerfile):
 
 ```dockerfile
 # Stage 1: Install production dependencies
@@ -289,7 +289,7 @@ CMD ["node", "src/server.js"]
 
 ## 6. Nginx Reverse Proxy Configuration 🔀
 
-The frontend container embeds a custom [nginx.conf](file:///e:/DevOps%20Coding/shopsphere-ecommerce/frontend/nginx.conf):
+The frontend container embeds a custom [nginx.conf](../frontend/nginx.conf):
 
 ```nginx
 server {
